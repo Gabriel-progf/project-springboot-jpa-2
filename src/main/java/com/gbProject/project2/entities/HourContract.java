@@ -2,14 +2,16 @@ package com.gbProject.project2.entities;
 
 import java.io.Serializable;
 import java.time.Instant;
+import java.util.HashSet;
+import java.util.Set;
+
 import com.fasterxml.jackson.annotation.JsonFormat;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
+import jakarta.persistence.ManyToMany;
 import jakarta.persistence.Table;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
@@ -35,16 +37,14 @@ public class HourContract implements Serializable {
     private @Getter @Setter Integer hours;
 
     
-    @ManyToOne
-    @JoinColumn(name = "id_worker")
-    private @Getter @Setter Worker worker;
+    @ManyToMany(mappedBy = "contracts")
+    private @Getter @Setter Set<Worker> workers = new HashSet<>();
 
-    public HourContract(Long id, Instant date, Double valuePerHour, Integer hours, Worker worker) {
+    public HourContract(Long id, Instant date, Double valuePerHour, Integer hours) {
         this.id = id;
         this.date = date;
         this.valuePerHour = valuePerHour;
         this.hours = hours;
-        this.worker = worker;
     }
 
     public Double getTotalValue() {

@@ -43,10 +43,10 @@ public class TestConfig implements CommandLineRunner {
         Worker w3 = new Worker(null, "Carlos", WorkerLevel.JUNIOR, 3000.0, d4);
         Worker w4 = new Worker(null, "Paula", WorkerLevel.SENIOR, 9000.0, d3);
 
-        HourContract c1 = new HourContract(null, Instant.parse("2019-06-20T19:53:07Z"), 20.0, 8, w1);
-        HourContract c2 = new HourContract(null, Instant.parse("2019-06-20T19:53:07Z"), 50.0, 6, w3);
-        HourContract c3 = new HourContract(null, Instant.parse("2019-06-20T19:53:07Z"), 80.0, 6,w4);
-        HourContract c4 = new HourContract(null, Instant.parse("2019-06-20T19:53:07Z"), 10.0, 8,w2);
+        HourContract c1 = new HourContract(null, Instant.parse("2019-06-20T19:53:07Z"), 20.0, 8);
+        HourContract c2 = new HourContract(null, Instant.parse("2019-06-20T19:53:07Z"), 50.0, 6);
+        HourContract c3 = new HourContract(null, Instant.parse("2019-06-20T19:53:07Z"), 80.0, 6);
+        HourContract c4 = new HourContract(null, Instant.parse("2019-06-20T19:53:07Z"), 10.0, 8);
 
         departmentRepository.saveAll(Arrays.asList(d1,d2,d3,d4));
         workerRespository.saveAll(Arrays.asList(w1,w2,w3,w4));

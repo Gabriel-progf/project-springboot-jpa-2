@@ -1,8 +1,10 @@
 package com.gbProject.project2.entities;
 
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.List;
+
+import java.util.HashSet;
+import java.util.Set;
+
 
 import com.gbProject.project2.entities.enums.WorkerLevel;
 
@@ -11,8 +13,9 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
+import jakarta.persistence.JoinTable;
+import jakarta.persistence.ManyToMany;
 import jakarta.persistence.ManyToOne;
-import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
@@ -40,8 +43,9 @@ public class Worker implements Serializable {
     @JoinColumn(name = "id_department")
     private @Getter @Setter Department department;
 
-    @OneToMany(mappedBy = "worker")
-    private @Getter List<HourContract> contracts = new ArrayList<>();
+    @ManyToMany
+    @JoinTable(name = "tb_worker_hour_contract", joinColumns = @JoinColumn(name = "worker_id"), inverseJoinColumns = @JoinColumn(name = "hour_contract_id"))
+    private @Getter Set<HourContract> contracts = new HashSet<>();
 
 
     public Worker(Long id, String name, WorkerLevel level, Double baseSalary, Department department) {
