@@ -33,7 +33,7 @@ public class HourContract implements Serializable {
     private @Getter @Setter Instant date;
     private @Getter @Setter Double valuePerHour;
     private @Getter @Setter Integer hours;
-    private @Getter Double totalValue;
+
     
     @ManyToOne
     @JoinColumn(name = "id_worker")
@@ -45,10 +45,9 @@ public class HourContract implements Serializable {
         this.valuePerHour = valuePerHour;
         this.hours = hours;
         this.worker = worker;
-        setTotalValue();
     }
 
-    public void setTotalValue() {
-        totalValue = valuePerHour * hours;
+    public Double getTotalValue() {
+        return valuePerHour * hours;
     }
 }
